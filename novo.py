@@ -96,4 +96,51 @@ def avg_sub(sub, use_test = None):
     test_df['orig_tm'] = test_df['tm']
     return test_df
 
+def fs(params):
+    use_base = params['use_base']
+    selcb = params['selcb']
+    enc = params['enc']
+    maxcb = params['maxcb']
+    metacb = params['metacb']
+    start_base = params['start_base']
+    nnovoc = params['nnovoc']
+    if params['ycol'] in enc:
+        enc = [x for x in enc if x != params['ycol']]
+    if start_base != []:
+        print("Start base",selcb(start_base, enc, params, nnovoc))
+    metamaxv = -999
+    reversemax = -999
+    cols = []
+    metacols = []
+    base = start_base
+    for i in range(len(use_base)+1):
+        maxv = -999
+        for p in use_base: 
+            if p in base:
+                continue
+            base_new = base + [p]
+            retval, model = selcb(base_new, enc, params, nnovoc)
+            if retval > maxv:
+                forp = p
+                maxv = retval
+                cols = base_new
+                maxcb("forward", retval,cols, model,enc,params)
+        base = cols
+        if len(base) > 1:
+            for p in base:
+                if p == forp:
+                    continue
+                base_new = [x for x in base if x != p]
+                retval, info = selcb(base_new, enc, params, nnovoc)
+                if retval > reversemax and retval > maxv:
+                    reversemax = retval
+                    cols = base_new
+                    maxcb("\nreverse", retval, cols, model,enc,params)
+        base = cols
+        if maxv > metamaxv:
+            metamaxv = maxv
+            metacols = cols
+            metacb("new", i, metamaxv, metacols)
+        else:
+            metacb("still", i, metamaxv, metacols)
 
