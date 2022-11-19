@@ -91,8 +91,6 @@ def avg_sub(sub, use_test = None):
     test_df['adj_tm_const'] =  test_df.apply(lambda x:x['tm']+x['edit_idx_avg_plus_minus_adj_const'] , axis = 1)
     test_df['adj_tm_new_rank_const'] = test_df['adj_tm_const'].rank()
     #display(test_df.corr())
-    best = pd.read_csv("/kaggle/input/novobest/submission175scw483csvcadjMTonly05x (1).csv")
-    test_df['best'] = best['tm'].rank()
     test_df['orig_tm'] = test_df['tm']
     return test_df
 
