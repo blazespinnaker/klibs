@@ -19,7 +19,7 @@ def get_struct(seq, fname):
         f.write(structure)
 
 
-def get_dfa(only = [], dirf = "/home/tim/subs"):
+def get_dfa(only = [], dirf = ""):
     d = None
     t = 0
     dfa = pd.DataFrame()
@@ -52,10 +52,10 @@ def get_dfa(only = [], dirf = "/home/tim/subs"):
 
 import pandas as pd, numpy as np, nltk
 #size of test is 2413
-def avg_sub(sub, use_test = None):
+def avg_sub(sub, use_test = None, dirf = ""):
     wt = "VPVNPEPDATSVENVALKTGSGDSQSDPIKADLEVKGQSALPFDVDCWAILCKGAPNVLQRVNEKTKNSNRDRSGANKGPFKDPQKWGIKALPPKNPSWSAQDFKSPEEYAFASSLQGGTNAILAPVNLASQNSQGGVLNGFYSANKVAQFDPSKPQQTKGTWFQITKFTGAAGPYCKALGSNDKSVCDKNKNIAGDWGFDPAKWAYQYDEKNNKFNYVGK"
     if use_test is None:
-        test_df = pd.read_csv("/kaggle/input/novozymes-enzyme-stability-prediction/test.csv")
+        test_df = pd.read_csv(dirf+"/test.csv")
         test_df.loc[1169, 'protein_sequence'] = wt[:-1]+"L" #1169 is the same as wt
         test_df['wt_sequence'] = wt
     else:
