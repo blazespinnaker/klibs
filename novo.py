@@ -49,11 +49,12 @@ def get_dfa(only = [], dirf = ""):
         display(dfa.corr(method='spearman').style.background_gradient(cmap='coolwarm', axis=None).format(precision=3))
     return dfa
 
-
+wt = "VPVNPEPDATSVENVALKTGSGDSQSDPIKADLEVKGQSALPFDVDCWAILCKGAPNVLQRVNEKTKNSNRDRSGANKGPFKDPQKWGIKALPPKNPSWSAQDFKSPEEYAFASSLQGGTNAILAPVNLASQNSQGGVLNGFYSANKVAQFDPSKPQQTKGTWFQITKFTGAAGPYCKALGSNDKSVCDKNKNIAGDWGFDPAKWAYQYDEKNNKFNYVGK"
+   
 import pandas as pd, numpy as np, nltk
 #size of test is 2413
 def avg_sub(sub, use_test = None, dirf = ""):
-    wt = "VPVNPEPDATSVENVALKTGSGDSQSDPIKADLEVKGQSALPFDVDCWAILCKGAPNVLQRVNEKTKNSNRDRSGANKGPFKDPQKWGIKALPPKNPSWSAQDFKSPEEYAFASSLQGGTNAILAPVNLASQNSQGGVLNGFYSANKVAQFDPSKPQQTKGTWFQITKFTGAAGPYCKALGSNDKSVCDKNKNIAGDWGFDPAKWAYQYDEKNNKFNYVGK"
+    global wt
     if use_test is None:
         test_df = pd.read_csv(dirf+"/test.csv")
         test_df.loc[1169, 'protein_sequence'] = wt[:-1]+"L" #1169 is the same as wt
