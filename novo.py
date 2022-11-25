@@ -19,11 +19,11 @@ def get_struct(seq, fname):
         f.write(structure)
 
 
-def get_dfa(only = []):
+def get_dfa(only = [], dirf = "/home/tim/subs"):
     d = None
     t = 0
     dfa = pd.DataFrame()
-    for dirname, _, filenames in os.walk('/kaggle/input'):
+    for dirname, _, filenames in os.walk(dirf):
         for filename in filenames:
             pth = os.path.join(dirname, filename)
             scre = re.compile('.*\/([0-9]{4}).csv', re.IGNORECASE).match(pth)
