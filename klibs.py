@@ -1,9 +1,10 @@
 import pandas as pd, numpy as np
-import dtale
+import pandas_profiling
+
 print("!pip install dtale")
 print("import pandas as pd, numpy as np")
 def explore(df):
   '''
-  explore(df) - uses dtale to show lots of info about df
+  explore(df) - uses pandas profiling to show lots of info about df
   '''
-  dtale.show(df)
+  display(pandas_profiling.ProfileReport(df, explorative=True))
