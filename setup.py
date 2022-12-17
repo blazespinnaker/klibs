@@ -8,7 +8,7 @@ setup(
     author_email='blaze@gmail.com',
     url='https://github.com/blazespinnaker/klibs',
     license='MIT',
-    install_requires=['numpy','pandas', 'dtale'],
+    install_requires=['numpy','pandas', 'pandas_profiling'],
     py_modules=['klibs'],
     packages=find_packages(),
     long_description_content_type='text/markdown',
