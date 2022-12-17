@@ -8,8 +8,8 @@ setup(
     author_email='blaze@gmail.com',
     url='https://github.com/blazespinnaker/klibs',
     license='MIT',
-    install_requires=['numpy','pandas'],
-    py_modules=['klib'],
+    install_requires=['numpy','pandas', 'dtale'],
+    py_modules=['klibs'],
     packages=find_packages(),
     long_description_content_type='text/markdown',
     long_description=io.open('README.md', encoding='utf-8').read()
