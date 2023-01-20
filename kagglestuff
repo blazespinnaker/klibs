@@ -12,3 +12,5 @@ while not STOP:
     MODELS.drop(k_best)
     if MODELS is None:
         STOP = True
+
+This is a technique for automatically ensembling predictions by iteratively searching for the best model (and best weight) to add to the current ensemble. The models are evaluated using out-of-fold predictions, so you need to save these each time.
