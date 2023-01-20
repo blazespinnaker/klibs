@@ -1,0 +1,14 @@
+while not STOP:
+    potential_new_best_cv_score = auc(y_train, current_best_ensemble)
+    for k in MODELS:
+        for wgt in range(-0.5,0.51,0.01):
+            potential_ensemble = (1-wgt) * current_best_ensemble + wgt * MODELS[k]
+            cv_score = auc(y_train, potential_ensemble)
+            if cv_score > potential_new_best_cv_score: 
+                potential_new_best_cv_score = cv_score
+                k_best, wgt_best = k, wgt
+
+    current_best_ensemble = (1-wgt_best) * current_best_ensemble + wgt_best * MODELS[k_best]
+    MODELS.drop(k_best)
+    if MODELS is None:
+        STOP = True
