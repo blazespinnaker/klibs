@@ -14,3 +14,14 @@ while not STOP:
         STOP = True
 
 This is a technique for automatically ensembling predictions by iteratively searching for the best model (and best weight) to add to the current ensemble. The models are evaluated using out-of-fold predictions, so you need to save these each time.
+
+
+from kaggle_secrets import UserSecretsClient, os
+
+secret_label = "kagglekey"
+secret_value = UserSecretsClient().get_secret(secret_label)
+
+os.system("mkdir -p /root/.kaggle")
+os.system("rm -rf /root/.kaggle/kaggle.json")
+os.system("echo '{\"username\":\"kaggleqrdl\",\"key\":\""+secret_value+"\"}' > /root/.kaggle/kaggle.json")
+os.system("chmod 600 /root/.kaggle/kaggle.json")
